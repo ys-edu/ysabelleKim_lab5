@@ -1,0 +1,57 @@
+<%- include("partials/header.ejs") %>
+<body class="bg-dark">
+    <h1 class="text-center">Quote Finder</h1><hr class="mx-auto" style="width:25%;">
+    <main class="d-block bg-info bg-opacity-10 border border-info-subtle rounded mx-auto p-3" style="width:420px;">
+        <!-- method="GET" unneeded but identifies form as a GET method vs. a POST method -->
+        <form class="row row-cols-lg-auto g-3 align-items-center" method="GET" action="/searchByKeyword">
+            <div class="col-12">
+                <input class="form-control" type="text" placeholder="Keyword" aria-label="searchByKeywordLabel" name="keyword">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-secondary">Search by Keyword</button>
+            </div>
+        </form><br>
+        <form class="row row-cols-lg-auto g-3 align-items-center" action="/searchByAuthor">
+            <div class="col-12">
+                <label><select class="form-select" aria-label="searchByAuthorLabel" name="authorId">
+                        <% for (a of authors) { %>
+                            <option value="<%= a.authorId %>">
+                                <%= a.firstName %> <%=a.lastName %>
+                            </option>
+                        <% } %>
+                    </select></label>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-secondary">Search by Author</button>
+            </div>
+        </form><br>
+        <form class="row row-cols-lg-auto g-3 align-items-center" action="/searchByCategory">
+            <div class="col-12">
+                <label><select class="form-select" aria-label="searchByCategoryLabel" name="category">
+                        <% for (c of categories) { %>
+                            <option value="<%= c.category %>">
+                                <%= c.category %>
+                            </option>
+                        <% } %>
+                    </select></label>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-secondary">Search by Category</button>
+            </div>
+        </form><br>
+        <form class="row row-cols-lg-auto g-3 align-items-center" action="/searchByLikes">
+            <div class="col-12">
+                <label><input name="likesMin" class="form-control" placeholder="0" aria-label="searchByLikesMinLabel"
+                              type="number" min="0" max="156" style="width:60px;"></label>
+            </div>
+            <div class="col-12">
+                <label><input name="likesMax" class="form-control" placeholder="156" aria-label="searchByLikesMaxLabel"
+                              min="1" max="156" style="width:60px;"></label>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-secondary">Search by Number of Likes</button>
+            </div>
+        </form>
+    </main>
+    <%- include("partials/footer.ejs") %>
+</body>

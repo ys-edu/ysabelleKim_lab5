@@ -1,0 +1,37 @@
+<%- include("partials/header.ejs") %>
+<body class="text-bg-dark">
+    <h1 class="text-center">Search Results</h1><hr class="mx-auto" style="width:25%;">
+    <main class="d-block mx-auto" style="width:500px;">
+        <% for (i of quotes) { %>
+            <div class="bg-secondary-subtle bg-gradient rounded p-3">
+                <p><%= i.quote %></p>
+            -<em>
+                <a href="#" id="<%= i.authorId %>">
+                    <%= i.firstName %> <%=i.lastName%></a>
+                | Category: <%= i.category %> | Likes: <%=i.likes %>
+            </em>
+            </div>
+            <br>
+        <% } %>
+        <!-- Modal -->
+        <div class="modal fade" id="authorModal" tabindex="-1" aria-labelledby="authorModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-3" id="authorModalLabel">Author Information</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="authorInfo"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="/" class="btn btn-outline-secondary">Return to Search</a>
+    </main>
+    <script src="/js/script.js"></script>
+    <%- include("partials/footer.ejs") %>
+</body>
